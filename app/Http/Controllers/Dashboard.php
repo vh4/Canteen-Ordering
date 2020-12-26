@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Menu;
+use App\User;
+use App\Food;
 
 class Dashboard extends Controller
 {
@@ -13,7 +15,7 @@ class Dashboard extends Controller
     $req->validate([
       'nama' => 'required',
       'foto' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-      'nim' => 'required|max:10',
+      'no_pelajar' => 'required|max:10',
       'imail' => 'required',
       'alamat' => 'required'
     ]);
@@ -23,16 +25,18 @@ class Dashboard extends Controller
 
     Menu::create([
       'nama' => $req->nama,
-      'nim' => $req->nim,
+      'user_id' => 0,
+      'no_pelajar' => $req->no_pelajar,
       'email' => $req->imail,
       'alamat' => $req->alamat,
+      'password' => bcrypt('BdewiErmawti'),
       'foto' => $namefoto
     ]);
     return redirect('/home')->with('status','data berhasil di tambahkan');
 
   //  $create = new \App\Menu;
   //  $req->nama = $create->nama;
-//    $req->nim  = $create->nim;
+//    $req->no_pelajar  = $create->no_pelajar;
   //  $req->imail = $create->email;
   //  $req->alamat = $create->alamat;
   //  $namefoto  = $create->foto;
@@ -40,10 +44,25 @@ class Dashboard extends Controller
 
   }
 
-  public function pagination(){
+  public function pagination(Request $request){
 
-      $pag = Menu::orderBy('created_at', 'asc')->paginate(5);
-      return view("home",['pag' => $pag]);
+      $pag = Menu::orderBy('updated_at', 'desc')->paginate(5);
+
+      if(isset($_GET['cari'])){
+        $foods = Food::where(
+        'name_food','LIKE','%'.$request->cari.'%')->orWhere(
+        'category','LIKE','%'.$request->cari.'%')->orWhere(
+        'price','LIKE','%'.$request->cari.'%')->orWhere(
+        'description','LIKE','%'.$request->cari.'%'
+          )->get();
+
+    }else {
+         $foods = Food::all();
+
+    }
+      
+      return view("home",['pag' => $pag, 'foods' => $foods]);
+      
     }
 
     public function delete($del){
@@ -53,9 +72,15 @@ class Dashboard extends Controller
       return redirect('/home')->with('status','data berhasil di hapus');
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $user_detail_id){
 
-        $edite = Menu::find($id);
+        $edite = Menu::find($user_detail_id);
+       // $edite = Menu::table('user_detail')->where('user_detail_id', $user_detail_id)->first();
+
+        $request->validate([
+          'foto' => 'file|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
         $edite->update($request->all());
 
         if($request->hasFile('foto')){
@@ -67,5 +92,7 @@ class Dashboard extends Controller
         return redirect('/home')->with('status','data berhasil di update');
 
     }
+
+
 
 }
