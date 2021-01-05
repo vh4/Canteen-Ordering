@@ -1,6 +1,6 @@
-## About Final Assigment Project Canteen Ordering Online
+## Final Assigment Project Canteen Ordering Online
 
-I've been make this project by myself. so please take me comform and donate form me with follow my page in github and so if you want more documentation for this projec, you can send message from email or you can follow my [instagram](https://www.instagram.com/vha_1337/).
+   I've been make this project by myself. so please take me comform and donate form me with follow my page in github and so if you want more documentation for this projec, you can send message from email or you can follow my [instagram](https://www.instagram.com/vha_1337/).
 
 
 ## Dashboard Admin🚀 
@@ -14,6 +14,11 @@ I've been make this project by myself. so please take me comform and donate form
 - [x] Get All Access for User
 
 
+### Simple Output
+
+![alt text](https://github.com/fathoniwasesojatiTelkom/canteen_ordering_online/blob/master/image/admin1.png)
+
+
 ## Dashboard User🚀 
 
 - [x] User Profile
@@ -22,6 +27,11 @@ I've been make this project by myself. so please take me comform and donate form
 - [x] Order Food and Drink
 - [x] Save to Cart
 - [x] Payment Menthod Very Easy
+
+### Simple Output
+
+![alt text](https://github.com/fathoniwasesojatiTelkom/canteen_ordering_online/blob/master/image/user1.png)
+
 
 
 ## C. Laravel Canteen Ordering Online 🚀 
