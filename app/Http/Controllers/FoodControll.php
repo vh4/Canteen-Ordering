@@ -8,7 +8,7 @@ use App\Food;
 class FoodControll extends Controller
 {
     public function index(){
-        $foodpag = Food::orderBy('updated_at', 'desc')->paginate(4);
+        $foodpag = Food::orderBy('updated_at', 'desc')->paginate(7);
         return view("food.index",['foodpag' => $foodpag]);
 
     }

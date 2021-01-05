@@ -10,7 +10,6 @@ class Menu extends Model
   protected $primaryKey = 'user_detail_id';
   protected $fillable = ['user_id', 'nama', 'no_pelajar', 'email', 'alamat', 'password', 'foto'];
 
-
   public function fotolain(){
     if(!$this->foto){
       

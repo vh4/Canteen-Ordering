@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Menu;
-use App\User;
 use App\Food;
+use Illuminate\Support\Facades\DB;
+use UxWeb\SweetAlert\SweetAlert;
 
 class Dashboard extends Controller
 {
@@ -32,6 +32,7 @@ class Dashboard extends Controller
       'password' => bcrypt('BdewiErmawti'),
       'foto' => $namefoto
     ]);
+    
     return redirect('/home')->with('status','data berhasil di tambahkan');
 
   //  $create = new \App\Menu;
@@ -46,7 +47,7 @@ class Dashboard extends Controller
 
   public function pagination(Request $request){
 
-      $pag = Menu::orderBy('updated_at', 'desc')->paginate(5);
+      $pag = Menu::orderBy('updated_at', 'desc')->paginate(6);
 
       if(isset($_GET['cari'])){
         $foods = Food::where(
@@ -60,8 +61,29 @@ class Dashboard extends Controller
          $foods = Food::all();
 
     }
+
+    $grfk = Food::orderBy('updated_at','desc')->paginate(16);
+    $argf = [];
+    $prc  = [];
+    $hpp = [];
+    $laba = [];
+
+    foreach($grfk as $g){
       
-      return view("home",['pag' => $pag, 'foods' => $foods]);
+     $argf[]  = $g->name_food;
+      $prc[]  = $g->price;
+      $hpp[]  = $g->price - 4000;
+      $laba[] = $g->price + 950;
+    }
+
+    $countOrder = DB::table('orders')->count();
+    $totalFood = DB::table('food')->count();
+    $to = date('Y-m-d H:i:s');
+    $from = date('Y-m-d H:i:s', strtotime('-7 days'));      
+    $count = DB::table('users')         
+    ->whereBetween('created_at', [$from, $to])->count();
+
+      return view("home",['pag' => $pag, 'foods' => $foods, 'count' => $count, 'countOrder' => $countOrder, 'totalFood' => $totalFood, 'argf' => $argf, 'prc' => $prc, 'hpp' => $hpp, 'laba' => $laba]);
       
     }
 
@@ -69,6 +91,7 @@ class Dashboard extends Controller
 
       $hps = Menu::find($del);
       $hps->delete($hps);
+      SweetAlert::success('Good job!')->persistent("Close");
       return redirect('/home')->with('status','data berhasil di hapus');
     }
 
@@ -88,7 +111,7 @@ class Dashboard extends Controller
           $edite->foto = $request->file('foto')->getClientOriginalName();
           $edite->save();
         }
-
+        SweetAlert::success('Good job!');
         return redirect('/home')->with('status','data berhasil di update');
 
     }

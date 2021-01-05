@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Darryldecode\Cart\Cart;
 use App\Food;
+use App\Order;
+use Illuminate\Support\Facades\Auth;
 
 class CartControll extends Controller
 {
@@ -27,6 +29,14 @@ class CartControll extends Controller
         return redirect('/home/cart');
     */
     $food = Food::where('food_id', $food_id)->first();
+    $id_user = Auth::user()->id;
+        
+    Order::create([
+        'user_id' => $id_user,
+        'food_id' => $food->food_id,
+        'tracking' => 'pending',
+        ]);
+
 
     \Cart::session(auth()->id())->add(array(
         'id' => $food->food_id,

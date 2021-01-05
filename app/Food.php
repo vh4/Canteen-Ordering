@@ -19,5 +19,7 @@ class Food extends Model
         return asset('image/'.$this->foto_food);
 
       }
+      
+
     
 }

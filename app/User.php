@@ -29,6 +29,11 @@ class User extends Authenticatable
 
     public function menu(){
         return $this->hasOne(Menu::class);
-        
     }
+
+    public function order(){
+        return $this->hasMany(Order::class);
+    }
+
+
 }

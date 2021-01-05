@@ -46,7 +46,6 @@
 						</form>
 					</div>
 					<div class="row">
-						<p>Daftar as user ?<a href="/register"> register here !!!!</a></p>
 					</div>
 				</div>
 			</div>
@@ -54,6 +53,5 @@
 	</div>
 	<!-- Footer -->
 	<div class="container-fluid text-center footer bawah">
-		Login as Admin &hearts; ( email : mfwj21@gmail.com password : anakbaik)</p>
 	</div>
 </body>

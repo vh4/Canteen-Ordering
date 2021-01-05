@@ -45,3 +45,22 @@ $(document).ready(function(){
     });
 
 });
+
+function initMap() {
+  const myLatlng = { lat: -7.5604586, lng: 110.8550299 };
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 15,
+    center: myLatlng,
+  });
+  const marker = new google.maps.Marker({
+    position: myLatlng,
+    map,
+    title: "Click to zoom",
+  });
+  map.addListener("center_changed", () => {
+    window.setTimeout(() => {
+      map.panTo(marker.getPosition());
+    }, 3000);
+  });
+
+}
