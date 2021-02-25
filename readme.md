@@ -1,4 +1,4 @@
-## Final Assigment Project Canteen Ordering Online
+## Final Assigment Canteen Ordering Online
 
    I've been make this project by myself. so please take me comform and donate form me with follow my page in github and so if you want more documentation for this projec, you can send message from email or you can follow my [instagram](https://www.instagram.com/vha_1337/).
 
