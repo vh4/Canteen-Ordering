@@ -14,11 +14,6 @@
 - [x] Get All Access for User
 
 
-### Simple Output
-
-![alt text](https://github.com/fathoniwasesojatiTelkom/canteen_ordering_online/blob/master/image/admin1.png)
-
-
 ## Dashboard User🚀 
 
 - [x] User Profile
@@ -27,11 +22,6 @@
 - [x] Order Food and Drink
 - [x] Save to Cart
 - [x] Payment Menthod Very Easy
-
-### Simple Output
-
-![alt text](https://github.com/fathoniwasesojatiTelkom/canteen_ordering_online/blob/master/image/user1.png)
-
 
 
 ## C. Laravel Canteen Ordering Online 🚀 
